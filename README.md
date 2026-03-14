@@ -26,3 +26,27 @@ npm run deploy
 ### Вариант 2: через GitHub Actions (автоматически при push)
 
 Если хочешь, можно подключить автодеплой через workflow. Для текущей задачи достаточно варианта выше.
+
+## Security score (MDN Observatory)
+
+Для высокого балла на [MDN HTTP Observatory](https://developer.mozilla.org/en-US/observatory) нужны именно HTTP-headers.
+
+Что уже сделано в проекте:
+
+- Добавлен файл `public/_headers` со строгими security headers:
+  - `Content-Security-Policy`
+  - `X-Content-Type-Options`
+  - `X-Frame-Options`
+  - `Referrer-Policy`
+  - `Cross-Origin-Resource-Policy`
+  - `Permissions-Policy`
+  - `Strict-Transport-Security`
+
+Важно:
+
+- `github.io` хостинг не применяет `public/_headers`, поэтому на `https://<user>.github.io` часть проверок будет падать независимо от кода.
+- Чтобы получить максимум (A/A+), нужен хостинг/прокси, где можно управлять заголовками:
+  - Cloudflare Pages (+ custom domain)
+  - Netlify
+  - Vercel
+  - Nginx/Caddy на своем сервере
