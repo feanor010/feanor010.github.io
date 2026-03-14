@@ -50,3 +50,16 @@ npm run deploy
   - Netlify
   - Vercel
   - Nginx/Caddy на своем сервере
+
+## Cloudflare Pages (when deploy command is required)
+
+Если в интерфейсе Cloudflare поле `Deploy command` обязательно, используй безопасный вариант для Pages:
+
+- `Build command`: `npm run build`
+- `Build output directory`: `dist`
+- `Deploy command`: `npm run cf:deploy`
+
+Что важно:
+
+- Используй именно `wrangler pages deploy`, а не `wrangler deploy`.
+- `wrangler deploy` запускает сценарий Workers и может попытаться добавить несовместимый Vite plugin.
